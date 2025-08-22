@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Update User</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 24px; }
+    form { max-width: 560px; padding: 16px; border: 1px solid #ddd; border-radius: 12px; }
+    label { display:block; margin-top: 12px; font-weight: 600; }
+    input, select { width: 100%; padding: 10px; margin-top: 6px; border: 1px solid #ccc; border-radius: 8px; }
+    button { margin-top: 16px; padding: 10px 16px; border:none; border-radius: 10px; cursor:pointer; }
+    .primary { background:#51cf66; color:white; margin: 0;}
+    .link { background:#dee2e6; color:#343a40; padding: 6px 12px; border-radius: 8px;}
+  </style>
+</head>
+<body>
+  <h1>Update User</h1>
+  <form action="/put-crud" method="POST">
+    <input type="hidden" name="id" value="<%= user.id %>" />
+    <label>First name</label>
+    <input name="firstName" value="<%= user.firstName %>" required />
+    <label>Last name</label>
+    <input name="lastName" value="<%= user.lastName %>" required />
+    <label>Email</label>
+    <input type="email" name="email" value="<%= user.email %>" required />
+    <label>Address</label>
+    <input name="address" value="<%= user.address || '' %>" />
+    <label>Gender</label>
+    <select name="gender" required>
+      <option value="Male" <%= user.gender === 'Male' ? 'selected' : '' %>>Male</option>
+      <option value="Female" <%= user.gender === 'Female' ? 'selected' : '' %>>Female</option>
+      <option value="Other" <%= user.gender === 'Other' ? 'selected' : '' %>>Other</option>
+    </select>
+    <div style="display: flex; justify-content: flex-start; align-items: center; gap: 24px; padding: 12px;">
+    <button class="primary" type="submit">Save</button>
+    <a class="link" href="/get-crud">Cancel</a>
+    </div>
+  </form>
+</body>
+</html>

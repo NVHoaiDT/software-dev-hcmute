@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+   <head>
+      <meta charset="UTF-8" />
+      <meta
+         name="viewport"
+         content="width=device-width, initial-scale=1.0"
+      />
+      <title>Danh sách Users</title>
+      <style>
+         body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto,
+               sans-serif;
+            margin: 24px;
+         }
+         table {
+            border-collapse: collapse;
+            width: 100%;
+         }
+         th,
+         td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+         }
+         th {
+            background: #f1f5f9;
+         }
+         .actions a {
+            margin-right: 8px;
+         }
+         .top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+         }
+         .btn {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            text-decoration: none;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="top">
+         <h1>Users</h1>
+         <a class="btn" href="/crud">+ Add User</a>
+      </div>
+      <table>
+         <thead>
+            <tr>
+               <th>ID</th>
+               <th>First Name</th>
+               <th>Last Name</th>
+               <th>Email</th>
+               <th>Address</th>
+               <th>Gender</th>
+               <th>Actions</th>
+            </tr>
+         </thead>
+         <tbody>
+            <% if (data && data.length) { %> <% data.forEach(u => { %>
+            <tr>
+               <td><%= u.id %></td>
+               <td><%= u.firstName %></td>
+               <td><%= u.lastName %></td>
+               <td><%= u.email %></td>
+               <td><%= u.address || '' %></td>
+               <td><%= u.gender %></td>
+               <td class="actions">
+                  <a href="/edit-crud?id=<%= u.id %>">Edit</a>
+                  <a
+                     href="/delete-crud?id=<%= u.id %>"
+                     onclick="return confirm('Confirm?')"
+                     >Remove</a
+                  >
+               </td>
+            </tr>
+            <% }) %> <% } else { %>
+            <tr>
+               <td colspan="7">Data temporary empty.</td>
+            </tr>
+            <% } %>
+         </tbody>
+      </table>
+   </body>
+</html>
